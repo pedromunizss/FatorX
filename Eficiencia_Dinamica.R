@@ -169,15 +169,15 @@ rmoutliers_0 <- function(x, media, iqr){
 }
 
 # REMOVENDO OUTLIERS DA BL002
-dados[, BL002_BOXPLOT := rmoutliers_0(BL002, MEDIA_BL002, IQR_BL002)]
+dados[, BL002_BOXPLOT := rmoutliers(BL002, MEDIA_BL002, IQR_BL002)]
 dados[, IQR_BL002 := NULL][, MEDIA_BL002 := NULL]
 
 # REMOVENDO OUTLIERS DA FN002
-dados[, FN002_BOXPLOT := rmoutliers_0(FN002, MEDIA_FN002, IQR_FN002)]
+dados[, FN002_BOXPLOT := rmoutliers(FN002, MEDIA_FN002, IQR_FN002)]
 dados[, IQR_FN002 := NULL][, MEDIA_FN002 := NULL]
 
 # REMOVENDO OUTLIERS
-dados[, FN003_BOXPLOT := rmoutliers_0(FN003, MEDIA_FN003, IQR_FN003)]
+dados[, FN003_BOXPLOT := rmoutliers(FN003, MEDIA_FN003, IQR_FN003)]
 dados[, IQR_FN003 := NULL][, MEDIA_FN003 := NULL]
 
 # REMOVENDO OUTLIERS DA FN026
@@ -185,19 +185,19 @@ dados[, FN026_BOXPLOT := rmoutliers(FN026, MEDIA_FN026, IQR_FN026)]
 dados[, IQR_FN026 := NULL][, MEDIA_FN026 := NULL]
 
 # REMOVENDO OUTLIERS DA FN010
-dados[, FN010_BOXPLOT := rmoutliers_0(FN010, MEDIA_FN010, IQR_FN010)]
+dados[, FN010_BOXPLOT := rmoutliers(FN010, MEDIA_FN010, IQR_FN010)]
 dados[, IQR_FN010 := NULL][, MEDIA_FN010 := NULL]
 
 # REMOVENDO OUTLIERS DA FN015
-dados[, FN015_BOXPLOT := rmoutliers_0(FN015, MEDIA_FN015, IQR_FN015)]
+dados[, FN015_BOXPLOT := rmoutliers(FN015, MEDIA_FN015, IQR_FN015)]
 dados[, IQR_FN015 := NULL][, MEDIA_FN015 := NULL]
 
 # REMOVENDO OUTLIERS DA FN016
-dados[, FN016_BOXPLOT := rmoutliers_0(FN016, MEDIA_FN016, IQR_FN016)]
+dados[, FN016_BOXPLOT := rmoutliers(FN016, MEDIA_FN016, IQR_FN016)]
 dados[, IQR_FN016 := NULL][, MEDIA_FN016 := NULL]
 
 # REMOVENDO OUTLIERS DA FN019
-dados[, FN019_BOXPLOT := rmoutliers_0(FN019, MEDIA_FN019, IQR_FN019)]
+dados[, FN019_BOXPLOT := rmoutliers(FN019, MEDIA_FN019, IQR_FN019)]
 dados[, IQR_FN019 := NULL][, MEDIA_FN019 := NULL]
 
 # REMOVENDO OUTLIERS DA AG011
@@ -266,17 +266,19 @@ for (i in 1:length(prestador)) {
     }
     else{
       PTF_input[t-1999] <- (aux[ANO == t, FN026_BOXPLOT]/aux[ANO == t-1, FN026_BOXPLOT])^
-        (.5*(aux[ANO==t-1, DESPESA_POR_EMPREGADO] * aux[ANO==t-1, FN026_BOXPLOT]/
-                (aux[ANO==t-1, DESPESA_POR_EMPREGADO] * aux[ANO==t-1, FN026_BOXPLOT] +
-                   aux[ANO==t-1, CAPEX] * aux[ANO==t-1, BL002_AJUSTADO] +
-                   aux[ANO==t-1, qOG] * aux[ANO==t-1, IPCA_AJUSTADO])) 
-             + 
-               (aux[ANO==t, DESPESA_POR_EMPREGADO]*aux[ANO==t, FN026_BOXPLOT]/
-                  (aux[ANO==t, DESPESA_POR_EMPREGADO] * aux[ANO==t, FN026_BOXPLOT] +
-                     aux[ANO==t, CAPEX] * aux[ANO==t, BL002_AJUSTADO] +
-                     aux[ANO==t, qOG] * aux[ANO==t, IPCA_AJUSTADO])
-               )
+        (.5 * (
+          (aux[ANO==t-1, DESPESA_POR_EMPREGADO] * aux[ANO==t-1, FN026_BOXPLOT]/
+             (aux[ANO==t-1, DESPESA_POR_EMPREGADO] * aux[ANO==t-1, FN026_BOXPLOT] +
+                aux[ANO==t-1, CAPEX] * aux[ANO==t-1, BL002_AJUSTADO] +
+                aux[ANO==t-1, qOG] * aux[ANO==t-1, IPCA_AJUSTADO]))
+          + 
+            (aux[ANO==t, DESPESA_POR_EMPREGADO]*aux[ANO==t, FN026_BOXPLOT]/
+               (aux[ANO==t, DESPESA_POR_EMPREGADO] * aux[ANO==t, FN026_BOXPLOT] +
+                  aux[ANO==t, CAPEX] * aux[ANO==t, BL002_AJUSTADO] +
+                  aux[ANO==t, qOG] * aux[ANO==t, IPCA_AJUSTADO]))
         )
+        )
+      
     }
   }
   
@@ -300,15 +302,17 @@ for (i in 1:length(prestador)) {
     }
     else{
       PTF_input[t-1999] <- (aux[ANO == t, qOG]/aux[ANO == t-1, qOG])^
-        (.5*  (aux[ANO==t-1, qOG] * aux[ANO==t-1, IPCA_AJUSTADO]/
-               (aux[ANO==t-1, DESPESA_POR_EMPREGADO] * aux[ANO==t-1, FN026_BOXPLOT] +
-                  aux[ANO==t-1, CAPEX] * aux[ANO==t-1, BL002_AJUSTADO] +
-                  aux[ANO==t-1, qOG] * aux[ANO==t-1, IPCA_AJUSTADO]
-               ))
-         + (aux[ANO==t, qOG] * aux[ANO==t, IPCA_AJUSTADO]/
+        (.5 * (
+          (aux[ANO==t-1, qOG] * aux[ANO==t-1, IPCA_AJUSTADO]/
+             (aux[ANO==t-1, DESPESA_POR_EMPREGADO] * aux[ANO==t-1, FN026_BOXPLOT] +
+                aux[ANO==t-1, CAPEX] * aux[ANO==t-1, BL002_AJUSTADO] +
+                aux[ANO==t-1, qOG] * aux[ANO==t-1, IPCA_AJUSTADO]))
+          + 
+            (aux[ANO==t, qOG] * aux[ANO==t, IPCA_AJUSTADO]/
                (aux[ANO==t, DESPESA_POR_EMPREGADO] * aux[ANO==t, FN026_BOXPLOT] +
                   aux[ANO==t, CAPEX] * aux[ANO==t, BL002_AJUSTADO] +
                   aux[ANO==t, qOG] * aux[ANO==t, IPCA_AJUSTADO])
+            )
         )
         )
     }
@@ -334,15 +338,16 @@ for (i in 1:length(prestador)) {
     }
     else{
       PTF_input[t-1999] <- (aux[ANO == t, BL002_AJUSTADO]/aux[ANO == t-1, BL002_AJUSTADO])^
-        (.5*(aux[ANO==t-1, CAPEX] * aux[ANO==t-1, BL002_AJUSTADO]/
+        (.5 * (
+           (aux[ANO==t-1, CAPEX] * aux[ANO==t-1, BL002_AJUSTADO]/
                (aux[ANO==t-1, DESPESA_POR_EMPREGADO] * aux[ANO==t-1, FN026_BOXPLOT] +
                   aux[ANO==t-1, CAPEX] * aux[ANO==t-1, BL002_AJUSTADO] +
-                  aux[ANO==t-1, qOG] * aux[ANO==t-1, IPCA_AJUSTADO]
-               )
-        ) + (aux[ANO==t, CAPEX] * aux[ANO==t, BL002_AJUSTADO]/
+                  aux[ANO==t-1, qOG] * aux[ANO==t-1, IPCA_AJUSTADO]))
+        +
+          (aux[ANO==t, CAPEX] * aux[ANO==t, BL002_AJUSTADO]/
                (aux[ANO==t, DESPESA_POR_EMPREGADO] * aux[ANO==t, FN026_BOXPLOT] +
                   aux[ANO==t, CAPEX] * aux[ANO==t, BL002_AJUSTADO] +
-                  aux[ANO==t, qOG] * aux[ANO==t, IPCA_AJUSTADO])
+                  aux[ANO==t, qOG] * aux[ANO==t, IPCA_AJUSTADO]))
         )
         )
     }
@@ -369,29 +374,6 @@ for (i in 2:26) {
 ################################### PTF OUTPUT #################################
 ################################################################################
 
-###################################
-dados[dados$SG_PRESTADOR == 'CASAL' & dados$ANO == 2019, 'pAg'] <- 0
-dados[dados$SG_PRESTADOR == 'COSANPA' & dados$ANO == 2019, 'pAg'] <- 0
-dados[dados$SG_PRESTADOR == 'SANEPAR' & dados$ANO == 2019, 'pAg'] <- 0
-###################################
-
-###################################
-dados[dados$SG_PRESTADOR == 'CAGECE' & dados$ANO == 2019, 'pEg'] <- 0
-dados[dados$SG_PRESTADOR == 'CORSAN' & dados$ANO == 2018, 'pEg'] <- 0
-dados[dados$SG_PRESTADOR == 'CORSAN' & dados$ANO == 2019, 'pEg'] <- 0
-dados[dados$SG_PRESTADOR == 'COSANPA' & dados$ANO == 2018, 'pEg'] <- 0
-dados[dados$SG_PRESTADOR == 'COSANPA' & dados$ANO == 2019, 'pEg'] <- 0
-dados[dados$SG_PRESTADOR == 'DESO' & dados$ANO == 2018, 'pEg'] <- 0
-dados[dados$SG_PRESTADOR == 'DESO' & dados$ANO == 2019, 'pEg'] <- 0
-dados[dados$SG_PRESTADOR == 'SABESP' & dados$ANO == 2019, 'pEg'] <- 0
-dados[dados$SG_PRESTADOR == 'SANEAGO' & dados$ANO == 2019, 'pEg'] <- 0
-dados[dados$SG_PRESTADOR == 'SANEATINS' & dados$ANO == 2018, 'pEg'] <- 0
-dados[dados$SG_PRESTADOR == 'SANEATINS' & dados$ANO == 2019, 'pEg'] <- 0
-dados[dados$SG_PRESTADOR == 'SANEPAR' & dados$ANO == 2019, 'pEg'] <- 0
-dados[dados$SG_PRESTADOR == 'SANESUL' & dados$ANO == 2018, 'pEg'] <- 0
-dados[dados$SG_PRESTADOR == 'SANESUL' & dados$ANO == 2019, 'pEg'] <- 0
-###################################
-
 # PTF OUT - AGUA
 
 ptf_output_agua <- data.frame(ANO = c(2000:2019))
@@ -408,10 +390,14 @@ for (i in 1:length(prestador)) {
     }
     else{
       PTF_output[t-1999] <- (aux[ANO == t, AG011_BOXPLOT]/aux[ANO == t-1, AG011_BOXPLOT])^
-        (.5*(aux[ANO==t-1, pAg] * aux[ANO == t-1, AG011_BOXPLOT]/
-               (aux[ANO==t-1, pAg] * aux[ANO == t-1, AG011_BOXPLOT] + aux[ANO==t-1, pEg] * aux[ANO == t-1, ES007_BOXPLOT])
-        ) + (aux[ANO==t, pAg] * aux[ANO == t, AG011_BOXPLOT]/
-               (aux[ANO==t, pAg] * aux[ANO == t, AG011_BOXPLOT] + aux[ANO==t, pEg] * aux[ANO == t, ES007_BOXPLOT])
+        (.5 * (
+          (aux[ANO==t-1, pAg] * aux[ANO == t-1, AG011_BOXPLOT]/
+             (aux[ANO==t-1, pAg] * aux[ANO == t-1, AG011_BOXPLOT] +
+                aux[ANO==t-1, pEg] * aux[ANO == t-1, ES007_BOXPLOT]))
+          +
+            (aux[ANO==t, pAg] * aux[ANO == t, AG011_BOXPLOT]/
+               (aux[ANO==t, pAg] * aux[ANO == t, AG011_BOXPLOT] +
+                  aux[ANO==t, pEg] * aux[ANO == t, ES007_BOXPLOT]))
         )
         )
     }
@@ -437,13 +423,15 @@ for (i in 1:length(prestador)) {
     }
     else{
       PTF_output[t-1999] <- (aux[ANO == t, ES007_BOXPLOT]/aux[ANO == t-1, ES007_BOXPLOT])^
-        (.5*(aux[ANO==t-1, pEg] * aux[ANO == t-1, ES007_BOXPLOT]/
-               (aux[ANO==t-1, pAg] * aux[ANO == t-1, AG011_BOXPLOT] +
-                  aux[ANO==t-1, pEg] * aux[ANO == t-1, ES007_BOXPLOT])
-             ) + (aux[ANO==t, pEg] * aux[ANO == t, ES007_BOXPLOT]/
+        (.5 * (
+          (aux[ANO==t-1, pEg] * aux[ANO == t-1, ES007_BOXPLOT]/
+             (aux[ANO==t-1, pAg] * aux[ANO == t-1, AG011_BOXPLOT] +
+                aux[ANO==t-1, pEg] * aux[ANO == t-1, ES007_BOXPLOT]))
+          +
+            (aux[ANO==t, pEg] * aux[ANO == t, ES007_BOXPLOT]/
                (aux[ANO==t, pAg] * aux[ANO == t, AG011_BOXPLOT] +
-                  aux[ANO==t, pEg] * aux[ANO == t, ES007_BOXPLOT])
-               )
+                  aux[ANO==t, pEg] * aux[ANO == t, ES007_BOXPLOT]))
+        )
         )
     }
   }
@@ -472,19 +460,35 @@ for (i in 2:26) {
   PTF[,i] <- ifelse(is.infinite(PTF[,i]), NA, PTF[,i])
   PTF[,i] <- ifelse(is.nan(PTF[,i]), NA, PTF[,i])
 }
+
+empresas_remover <- c()
+for (i in 1:length(prestador)) {
+  if( sum(is.na(select(PTF, prestador[i]))) > 10)
+    empresas_remover <- c(empresas_remover, print(prestador[i]))
+}
+PTF <- select(PTF, -empresas_remover)
+
+
 PTF <- data.table(PTF)
+
+# empresas que continuaram
+col_ptf <- names(PTF)
+
 ########### Final ################
 
 vol_faturado_ag <- dados[, .(ANO, SG_PRESTADOR, AG011_BOXPLOT)]
 vol_faturado_ag <- dcast.data.table(vol_faturado_ag, ANO ~ SG_PRESTADOR, value.var = 'AG011_BOXPLOT')
 vol_faturado_ag <- vol_faturado_ag[ANO != 1999]
+vol_faturado_ag <- select(vol_faturado_ag, col_ptf)
 
 
 vol_faturado_eg <- dados[, .(ANO, SG_PRESTADOR, ES007_BOXPLOT)]
 vol_faturado_eg <- dcast.data.table(vol_faturado_eg, ANO ~ SG_PRESTADOR, value.var = 'ES007_BOXPLOT')
 vol_faturado_eg <- vol_faturado_eg[ANO != 1999]
+vol_faturado_eg <- select(vol_faturado_eg, col_ptf)
 
 # CONFERINDO SE A COLUNAS (EMPRESAS) ESTAO NA MESMA ORDEM
+
 names(vol_faturado_ag) == names(PTF)
 
 
@@ -499,10 +503,10 @@ vol_faturado <- vol_faturado*ifelse((aux), NA, 1)
 
 numerador <- data.frame(PTF * vol_faturado)
 numerador$ANO <- 2000:2019
-for (i in 2:26) {
+for (i in 2:(length(PTF))) {
   numerador[,i] <- ifelse(is.infinite(numerador[,i]), NA, numerador[,i])
   numerador[,i] <- ifelse(is.nan(numerador[,i]), NA, numerador[,i])
 }
 
 
-mean(rowSums(numerador[,2:26], na.rm = T)/rowSums(vol_faturado[,2:26], na.rm = T))
+mean(rowSums(numerador[,2:length(numerador)], na.rm = T)/rowSums(vol_faturado[,2:length(numerador)], na.rm = T))
