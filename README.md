@@ -52,7 +52,14 @@ Caso não haja variação considerada significativa nos valores, será utilizado
 
 Caso haja variação considerada significativa nos valores, será utilizado a média dos 3 últimos anos.
 
-Os resultados obtidos das eficiências estáticas das empresas da amostra serão classificados em ordem crescente e posteriormente divididos em quartis, sendo o primeiro das menos eficientes e o último, das mais eficientes.
+Os resultados obtidos das eficiências estáticas das empresas da amostra serão classificados em ordem crescente e posteriormente divididos em quartis, sendo o primeiro das menos eficientes e o último, das mais eficientes, coforme tabela a seguir
+
+| Grupo                    | $\Delta_{EE}$ |
+|--------------------------|---------------|
+| [mín, 1º Quartil)        | 2,0%          |
+| [1º Quatil, 2º Quartil)  | 1,5%          |
+| [2º Quartil, 3º Quartil) | 1,0%          |
+| [3º Quartil, máx]        | 0,5%          |
 
 ### Variação da eficiência dinâmica
 
