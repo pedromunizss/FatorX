@@ -30,6 +30,8 @@ $\Delta_{ED}:$ Variação da eficiência dinâmica
 
 A variação da eficiência estática é calculada pelo método de Análise Envoltória de Dados (DEA), que calcula um escore de eficiência usado para comparar a combinação de vários insumos (inputs) e produtos (outputs) de cada empresa, com as combinações das empresas mais eficientes da amostra.
 
+Para o cáculo do DEA será utilizdo o modelo VRS (*variable returns to scale*) orientado aos inputs. 
+
 O número de prestadores de serviços utilizados no benchmarking deverá ser, idealmente, pelo menos o triplo do número de variáveis consideradas como insumos e produtos.
 
 Para o cálculo da eficiência estática devem ser consideradas as seguintes variáveis:
