@@ -63,3 +63,17 @@ Os resultados obtidos das eficiências estáticas das empresas da amostra serão
 
 ### Variação da eficiência dinâmica
 
+A variação da eficiência dinâmica (Δ𝐸𝐷) será calculada pelo cálculo da Produtividade Total dos Fatores (PTF), por meio da aplicação do índice de Tornqvist.
+
+A Produtividade Total dos Fatores de uma empresa 𝑘 em um ano 𝑡 (𝑃𝑇𝐹𝑘𝑡) é obtida por meio da seguinte fórmula:
+𝑃𝑇𝐹𝑘𝑡 = 𝑃𝑇𝐹𝑘𝑡 𝑑𝑜𝑠 𝑜𝑢𝑡𝑝𝑢𝑡𝑠 / 𝑃𝑇𝐹𝑘𝑡 𝑑𝑜𝑠 𝑖𝑛𝑝𝑢𝑡𝑠
+
+A Variação da Eficiência Dinâmica (Δ𝐸𝐷𝑡), para cada ano 𝑡, é obtida por meio da média do PTF de todas as prestadoras, ponderada pelos seus respectivos volumes faturados totais, somando água e esgoto, isto é:
+
+Δ𝐸𝐷𝑡 = Σ(𝑃𝑇𝐹𝑘𝑡×𝑉𝐹𝑘𝑡) / Σ𝑉𝐹𝑘𝑡
+
+A Variação da Eficiência Dinâmica (Δ𝐸𝐷) será obtida por meio da média aritmética dos valores da Variação da Eficiência Dinâmica (Δ𝐸𝐷𝑡), obtida em cada ano 𝑡, menos um, isto é:
+
+Δ𝐸𝐷=(ΣΔ𝐸𝐷 / 20) − 1
+
+Para o cálculo da eficiência dinâmica devem ser utilizadas as seguintes variáveis:
