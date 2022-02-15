@@ -508,5 +508,5 @@ for (i in 2:(length(PTF))) {
   numerador[,i] <- ifelse(is.nan(numerador[,i]), NA, numerador[,i])
 }
 
-
+# VARIACAO DA EFICIENCIA DINAMICA
 mean(rowSums(numerador[,2:length(numerador)], na.rm = T)/rowSums(vol_faturado[,2:length(numerador)], na.rm = T))
