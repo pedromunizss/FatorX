@@ -77,3 +77,17 @@ A Variação da Eficiência Dinâmica (Δ𝐸𝐷) será obtida por meio da méd
 Δ𝐸𝐷=(ΣΔ𝐸𝐷 / 20) − 1
 
 Para o cálculo da eficiência dinâmica devem ser utilizadas as seguintes variáveis:
+
+|          | Vatiável                                                                                 | Valor                     | Unidade               | SNIS                                                                                                                       |
+|----------|------------------------------------------------------------------------------------------|---------------------------|-----------------------|----------------------------------------------------------------------------------------------------------------------------|
+|          | Despesas com pessoal próprio                                                             | nº de empregados próprios | R$/nº de empregados   | Despesas com pessoal próprio (FN010); Qantidade total de empregados próprios (FN026).                                      |
+|  Insumos | Outros gastos operacionais (excluído os gastos com o pessoal próprio, ajustado pelo IPCA | R$                        | R$ ajustado pelo IPCA | Despesas de Exploração - DEX (FN015), inclusive energia elétrica.                                                          |
+|          | Ativo                                                                                    | RS                        | CAPEX/Ativo           | Despesas com depreciação, amostização do ativo deferido e provisões para devedores duvidosos (FN019); Ativo total (BL002). |
+| Produtos | Valume de água faturado                                                                  | m³                        | R$/m³                 | Volume de água faturado (AG011); Receita Operacional direta de água (FN002).                                               |
+|          | Volume de esgoto faturado                                                                | m³                        | R$/m³                 | Volume de esgoto faturado (ES007); Receita Operacional direta de esgoto (FN003).                                           |
+
+
+As informações são disponibilizadas pelo SNIS, e são divulgados no portal
+www.snis.gov.br
+
+Para o cálculo será utilizado as informações dos últimos 20 anos que antecendem a RTP em processo.
