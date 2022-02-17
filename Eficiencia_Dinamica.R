@@ -4,7 +4,7 @@ library(lubridate) # ajuste das datas
 library(ipeadatar) # dados do ipca
 library(reshape2) # transformacao da base de dados
 
-setwd('ED')
+#setwd('ED')
 
 ##########################################################
 ############## DADOS DO IPCA DE 1999 A 2019 ##############
@@ -62,7 +62,7 @@ names(IPCA) <- c('ANO', 'IPCA', 'IPCA_AJUSTADO')
 
 
 # Apos baixar os dados do SNIS, salva-lo no formato csv separado por ';'
-dados <- read.table(file = 'Agregado-20211103161719.csv',
+dados <- read.table(file = 'dados_eficiencia_dinamica.csv',
                     header = TRUE,
                     dec = ',',
                     sep = ';',
