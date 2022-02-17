@@ -1,3 +1,6 @@
+Para uma informação mais detalhada do cálculo acesse:
+https://www.adasa.df.gov.br/images/storage/legislacao/Res_ADASA/2021/Res_01/Modulo-VI-Fator-X.pdf
+
 # Fator X - Adasa
 
 O Fator X é o mecanismo regulatório que permite o compartilhamento dos ganhos de produtividade com os usuários.
