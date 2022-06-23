@@ -1,3 +1,13 @@
+# verifica e instala os pacotes necessários
+pkg <- c('dplyr', 'Benchmarking')
+
+pkg_install <- pkg[!(pkg %in% installed.packages())]
+if(length(pkg_install)){
+    for (i in 1:length(pkg_install)) {
+        install.packages(pkg_install[i])
+    }
+}
+
 library(Benchmarking) #biblioteca com a funcao dea
 library(dplyr)
 
