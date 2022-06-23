@@ -1,3 +1,13 @@
+# Verificando e instalando os pacotes necessários
+pkg <- c('dplyr', 'data.table', 'lubridate', 'ipeadatar', 'reshape2', 'scales')
+
+pkg_install <- pkg[!(pkg %in% installed.packages())]
+if(length(pkg_install)){
+    for (i in 1:length(pkg_install)) {
+        install.packages(pkg_install[i])
+    }
+}
+
 library(dplyr)
 library(data.table) # manipulacao de dados
 library(lubridate) # ajuste das datas
